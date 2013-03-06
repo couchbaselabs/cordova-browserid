@@ -50,7 +50,12 @@
 }
 
 /** The object that will be informed about success or failure. Required. */
+#if !__has_feature(objc_arc)
+@property (nonatomic,assign) id<BrowserIDControllerDelegate> delegate;
+#else
 @property (nonatomic,weak) id<BrowserIDControllerDelegate> delegate;
+#endif
+
 
 /** The URL of the site the user is logging into (i.e. the site you will send the assertion to).
     Required. */

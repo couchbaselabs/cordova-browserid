@@ -1,7 +1,10 @@
 #import <Cordova/CDV.h>
+#import "BrowserIDController+UIKit.h"
 
-@interface CBCordovaBrowserId : CDVPlugin
+@interface CBCordovaBrowserId : CDVPlugin <BrowserIDControllerDelegate>
 
-- (void)echo:(CDVInvokedUrlCommand*)command;
+@property (nonatomic, strong) CDVInvokedUrlCommand *command;
+
+- (void)presentBrowserIdDialog:(CDVInvokedUrlCommand*)urlCommand;
 
 @end

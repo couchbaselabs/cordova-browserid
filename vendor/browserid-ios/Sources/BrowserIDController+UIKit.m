@@ -20,6 +20,14 @@
 
 @implementation BrowserIDController (UIKit)
 
+static id noarcAutorelease(id obj) {
+#if !__has_feature(objc_arc)
+    return [obj autorelease];
+#else
+    return obj;
+#endif
+}
+
 - (UIViewController*) viewController {
     if (!_UIController) {
         _UIController = [[BrowserIDUIViewController alloc] initWithController: self];
@@ -42,7 +50,7 @@
         navController.modalPresentationStyle = UIModalPresentationFormSheet;
     }
     [parentController presentViewController: navController animated: YES completion: nil];
-    return navController;
+    return noarcAutorelease(navController);
 }
 
 @end
@@ -65,6 +73,7 @@
     [rootView addSubview: _webView];
     _webView.delegate = self;
     self.view = rootView;
+    noarcAutorelease(rootView);
 }
 
 - (void) viewDidLoad

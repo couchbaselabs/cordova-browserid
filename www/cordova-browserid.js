@@ -1,5 +1,8 @@
-window.echo = function(str, callback) {
-    cordova.exec(callback, function(err) {
-        callback('Nothing to echo.');
-    }, "CBCordovaBrowserId", "echo", [str]);
+window.presentBrowserIdDialog = function(origin, callback) {
+  // use node.js style error reporting (first argument)
+  cordova.exec(function(assertion){
+    callback(false, assertion);
+  }, function(err) {
+   callback(err);
+ }, "CBCordovaBrowserId", "presentBrowserIdDialog", [origin]);
 };
