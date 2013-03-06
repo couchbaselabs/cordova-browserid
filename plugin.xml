@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.couchbase.browserid"
+    version="0.1.0">
+
+	<name>Cordova BrowserId</name>
+	<asset src="www/cordova-browserid.js" target="js/cordova-browserid.js" />
+
+    <platform name="ios">
+        <plugins-plist key="CordovaBrowserId" string="CordovaBrowserId" />
+	    <header-file src="CBCordovaBrowserId.h" />
+	    <source-file src="CBCordovaBrowserId.m" />
+    </platform>
+
+</plugin>
