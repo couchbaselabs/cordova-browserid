@@ -4,11 +4,13 @@
     id="com.couchbase.browserid"
     version="0.1.0">
 
-	<name>Cordova BrowserId</name>
-	<asset src="www/cordova-browserid.js" target="js/cordova-browserid.js" />
+	<name>CordovaBrowserId</name>
+	<asset src="www/cordova-browserid.js" />
 
     <platform name="ios">
-        <plugins-plist key="CordovaBrowserId" string="CordovaBrowserId" />
+    	<config-file target="config.xml" parent="/cordova/plugins">
+    	    <plugin name="CBCordovaBrowserId" value="CBCordovaBrowserId"/>
+    	</config-file>
 	    <header-file src="CBCordovaBrowserId.h" />
 	    <source-file src="CBCordovaBrowserId.m" />
     </platform>
