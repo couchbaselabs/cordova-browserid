@@ -4,7 +4,7 @@ window.onload = function()
 {
     // The origin is setup when this code template is loaded in the native application
     var origin = "%@";
-    
+
     var callbackToCocoa = function(name, value) {
         window.location = "personaViewController://" + name + "/callback?data=" + value;
     };
@@ -29,8 +29,8 @@ window.onload = function()
     var options = {};
 
     // Doomed attempt to future-proof against internal changes Mozilla may or may not make to dialog.js
-    if (BrowserID && BrowserID.internal) {
-        BrowserID.internal.get(origin, internalGetCallback, options);
+    if (Persona && Persona.internal) {
+        Persona.internal.get(origin, internalGetCallback, options);
     } else if (Persona && Persona.internal) {
         Persona.internal.get(origin, internalGetCallback, options);
     }

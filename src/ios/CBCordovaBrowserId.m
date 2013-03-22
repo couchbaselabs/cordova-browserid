@@ -1,7 +1,7 @@
-#import "CBCordovaBrowserId.h"
+#import "CBCordovaPersona.h"
 #import <Cordova/CDV.h>
 
-@implementation CBCordovaBrowserId
+@implementation CBCordovaPersona
 
 @synthesize command;
 
@@ -14,49 +14,49 @@
     return self;
 }
 
-- (void)presentBrowserIdDialog:(CDVInvokedUrlCommand*)urlCommand
+- (void)presentPersonaDialog:(CDVInvokedUrlCommand*)urlCommand
 {
     if (self.command != nil) {
-        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"There is already a browserid call in progress"] callbackId:urlCommand.callbackId];
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"There is already a Persona call in progress"] callbackId:urlCommand.callbackId];
         return;
     }
     self.command = urlCommand;
 
     // present modal controller, set us as the delegate
-    BrowserIDController* browserIDController = [[BrowserIDController alloc] init];
-    browserIDController.origin = [NSURL URLWithString:[urlCommand.arguments objectAtIndex:0]];
-    browserIDController.delegate = self;
+    PersonaController* personaController = [[PersonaController alloc] init];
+    personaController.origin = [NSURL URLWithString:[urlCommand.arguments objectAtIndex:0]];
+    personaController.delegate = self;
 
     id rootVC = [[[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0] nextResponder];
-    [browserIDController presentModalInController: rootVC];
+    [personaController presentModalInController: rootVC];
 }
 
-- (void) dismissBrowserIDController: (BrowserIDController*) browserIDController {
-    [browserIDController.viewController dismissViewControllerAnimated: YES completion: NULL];
+- (void) dismissPersonaController: (PersonaController*) personaController {
+    [personaController.viewController dismissViewControllerAnimated: YES completion: NULL];
 }
 
-- (void) browserIDControllerDidCancel: (BrowserIDController*) browserIDController {
-    [self dismissBrowserIDController: browserIDController];
+- (void) personaControllerDidCancel: (PersonaController*) personaController {
+    [self dismissPersonaController: personaController];
     // send error back to javascript
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"canceled"];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.command.callbackId];
     self.command = nil;
 }
 
-- (void) browserIDController: (BrowserIDController*) browserIDController
+- (void) personaController: (PersonaController*) personaController
            didFailWithReason: (NSString*) reason
 {
-    [self dismissBrowserIDController: browserIDController];
+    [self dismissPersonaController: personaController];
     // send error back to javascript
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:reason];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.command.callbackId];
     self.command = nil;
 }
 
-- (void) browserIDController: (BrowserIDController*) browserIDController
+- (void) personaController: (PersonaController*) personaController
      didSucceedWithAssertion: (NSString*) assertion
 {
-    [self dismissBrowserIDController: browserIDController];
+    [self dismissPersonaController: personaController];
     // send assertion back to javascript
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:assertion];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.command.callbackId];

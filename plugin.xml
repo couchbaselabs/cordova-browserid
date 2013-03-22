@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="com.couchbase.browserid"
+    id="com.couchbase.persona"
     version="0.1.0">
 
-	<name>CordovaBrowserId</name>
-	<asset src="www/cordova-browserid.js" />
+	<name>CordovaPersona</name>
+	<asset src="www/cordova-persona.js" />
 
     <platform name="ios">
     	<config-file target="config.xml" parent="/cordova/plugins">
-    	    <plugin name="CBCordovaBrowserId" value="CBCordovaBrowserId"/>
+    	    <plugin name="CBCordovaPersona" value="CBCordovaPersona"/>
     	</config-file>
 
-	    <header-file src="CBCordovaBrowserId.h" />
-	    <source-file src="CBCordovaBrowserId.m" />
+	    <header-file src="CBCordovaPersona.h" />
+	    <source-file src="CBCordovaPersona.m" />
 
-	    <header-file src="../../vendor/browserid-ios/Sources/BrowserIDController.h" />
-	    <source-file src="../../vendor/browserid-ios/Sources/BrowserIDController.m" />
+	    <header-file src="../../vendor/browserid-ios/Sources/PersonaController.h" />
+	    <source-file src="../../vendor/browserid-ios/Sources/PersonaController.m" />
 
-	    <resource-file src="../../vendor/browserid-ios/Sources/BrowserIDController.js" />
+	    <resource-file src="../../vendor/browserid-ios/Sources/PersonaController.js" />
 
-	    <header-file src="../../vendor/browserid-ios/Sources/BrowserIDController+UIKit.h" />
-	    <source-file src="../../vendor/browserid-ios/Sources/BrowserIDController+UIKit.m" />
+	    <header-file src="../../vendor/browserid-ios/Sources/PersonaController+UIKit.h" />
+	    <source-file src="../../vendor/browserid-ios/Sources/PersonaController+UIKit.m" />
 
     </platform>
 

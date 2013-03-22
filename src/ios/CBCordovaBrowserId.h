@@ -1,10 +1,10 @@
 #import <Cordova/CDV.h>
-#import "BrowserIDController+UIKit.h"
+#import "PersonaController+UIKit.h"
 
-@interface CBCordovaBrowserId : CDVPlugin <BrowserIDControllerDelegate>
+@interface CBCordovaPersona : CDVPlugin <PersonaControllerDelegate>
 
 @property (nonatomic, strong) CDVInvokedUrlCommand *command;
 
-- (void)presentBrowserIdDialog:(CDVInvokedUrlCommand*)urlCommand;
+- (void)presentPersonaDialog:(CDVInvokedUrlCommand*)urlCommand;
 
 @end
