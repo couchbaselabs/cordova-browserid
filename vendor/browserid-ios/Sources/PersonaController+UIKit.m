@@ -1,24 +1,24 @@
 //
-//  BrowserIDController+UIKit.m
+//  PersonaController+UIKit.m
 //  TouchWiki
 //
 //  Created by Jens Alfke on 1/9/13.
 //  Copyright (c) 2013 Couchbase. All rights reserved.
 //
 
-#import "BrowserIDController+UIKit.h"
+#import "PersonaController+UIKit.h"
 
 
-@interface BrowserIDUIViewController : UIViewController <UIWebViewDelegate>
+@interface PersonaUIViewController : UIViewController <UIWebViewDelegate>
 {
-    BrowserIDController* _controller;
+    PersonaController* _controller;
     UIWebView* _webView;
 }
-- (id) initWithController: (BrowserIDController*)controller;
+- (id) initWithController: (PersonaController*)controller;
 @end
 
 
-@implementation BrowserIDController (UIKit)
+@implementation PersonaController (UIKit)
 
 static id noarcAutorelease(id obj) {
 #if !__has_feature(objc_arc)
@@ -30,7 +30,7 @@ static id noarcAutorelease(id obj) {
 
 - (UIViewController*) viewController {
     if (!_UIController) {
-        _UIController = [[BrowserIDUIViewController alloc] initWithController: self];
+        _UIController = [[PersonaUIViewController alloc] initWithController: self];
     }
     return _UIController;
 }
@@ -56,9 +56,9 @@ static id noarcAutorelease(id obj) {
 @end
 
 
-@implementation BrowserIDUIViewController
+@implementation PersonaUIViewController
 
-- (id) initWithController: (BrowserIDController*)controller {
+- (id) initWithController: (PersonaController*)controller {
     self = [super init];
     if (self) {
         _controller = controller;
@@ -80,7 +80,7 @@ static id noarcAutorelease(id obj) {
 {
     [super viewDidLoad];
 
-    self.title = NSLocalizedString(@"Log In With Persona", @"BrowserID login window title");
+    self.title = NSLocalizedString(@"Log In With Persona", @"Persona login window title");
 
     UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithTitle: @"Cancel"
                                                                      style: UIBarButtonItemStylePlain target: self action: @selector(cancel)];
@@ -105,7 +105,7 @@ static id noarcAutorelease(id obj) {
 - (IBAction) cancel
 {
     [_webView stopLoading];
-    [_controller.delegate browserIDControllerDidCancel: _controller];
+    [_controller.delegate personaControllerDidCancel: _controller];
 }
 
 - (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType

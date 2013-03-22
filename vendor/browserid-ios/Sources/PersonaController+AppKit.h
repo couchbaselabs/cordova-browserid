@@ -1,5 +1,5 @@
 //
-//  BrowserIDController+AppKit.h
+//  PersonaController+AppKit.h
 //  TouchWiki
 //
 //  Created by Jens Alfke on 1/9/13.
@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "BrowserIDController.h"
+#import "PersonaController.h"
 
-@interface BrowserIDController (AppKit)
+@interface PersonaController (AppKit)
 
 /** A view controller that hosts the login UI. */
 @property (nonatomic,readonly) NSViewController* viewController;

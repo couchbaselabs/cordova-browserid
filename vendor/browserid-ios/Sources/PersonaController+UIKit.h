@@ -1,16 +1,16 @@
 //
-//  BrowserIDController+UIKit.h
+//  PersonaController+UIKit.h
 //  TouchWiki
 //
 //  Created by Jens Alfke on 1/9/13.
 //  Copyright (c) 2013 Couchbase. All rights reserved.
 //
 
-#import "BrowserIDController.h"
+#import "PersonaController.h"
 
-@interface BrowserIDController (UIKit)
+@interface PersonaController (UIKit)
 
-/** A UIViewController that contains the BrowserID login UI. */
+/** A UIViewController that contains the Persona login UI. */
 @property (readonly) UIViewController* viewController;
 
 /** A convenience method that puts the receiver in a UINavigationController and presents it modally

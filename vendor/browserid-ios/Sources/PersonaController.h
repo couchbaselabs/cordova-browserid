@@ -1,5 +1,5 @@
 //
-//  BrowserIDController
+//  PersonaController
 //  TouchWiki
 //
 //  Created by Jens Alfke on 1/9/13.
@@ -7,43 +7,43 @@
 //
 
 #import <Foundation/Foundation.h>
-@class BrowserIDController;
+@class PersonaController;
 
 
-/** Delegate of a BrowserIDController. Of the optional methods, didSucceedWithAssertion
+/** Delegate of a PersonaController. Of the optional methods, didSucceedWithAssertion
     must be implemented unless the controller's 'verifier' property is set, in which case both
     didSucceedVerificationWithReceipt and didFailVerificationWithError must be implemented. */
-@protocol BrowserIDControllerDelegate <NSObject>
+@protocol PersonaControllerDelegate <NSObject>
 
-/** Sent if the user presses the Cancel button on the BrowserID window. */
-- (void) browserIDControllerDidCancel: (BrowserIDController*) browserIDController;
+/** Sent if the user presses the Cancel button on the Persona window. */
+- (void) personaControllerDidCancel: (PersonaController*) personaController;
 
 /** Sent if the authentication process fails. Currently the reason will just be @"". */
-- (void) browserIDController: (BrowserIDController*) browserIDController
+- (void) personaController: (PersonaController*) personaController
            didFailWithReason: (NSString*) reason;
 @optional
 /** Sent after authentication was successful. The assertion will be a long opaque string that
-    should be sent to the origin site's BrowserID authentication API. */
-- (void) browserIDController: (BrowserIDController*) browserIDController
+    should be sent to the origin site's Persona authentication API. */
+- (void) personaController: (PersonaController*) personaController
      didSucceedWithAssertion: (NSString*) assertion;
 
 /** Sent after authentication and server-side verification are successful, _only_ if the
     controller's 'verifier' property is set to a server-side verifier URL.
     The 'receipt' parameter is the verifier response as decoded from JSON. */
-- (void) browserIDController: (BrowserIDController*) browserIDController
+- (void) personaController: (PersonaController*) personaController
          didSucceedVerificationWithReceipt: (NSDictionary*) receipt;
 
 /** Sent if server-side verification fails, _only_ if the controller's 'verifier' property is set
     to a server-side verifier URL. */
-- (void) browserIDController: (BrowserIDController*) browserIDController
+- (void) personaController: (PersonaController*) personaController
          didFailVerificationWithError: (NSError*) error;
 
 @end
 
 
-/** Controller for BrowserID login. This class is cross-platform; the UI-related API is in
-    category methods found in BrowserIDController+UIKit.h and BrowserIDController+AppKit.h. */
-@interface BrowserIDController : NSObject
+/** Controller for Persona login. This class is cross-platform; the UI-related API is in
+    category methods found in PersonaController+UIKit.h and PersonaController+AppKit.h. */
+@interface PersonaController : NSObject
 {
     @private
     id _UIController;
@@ -51,9 +51,9 @@
 
 /** The object that will be informed about success or failure. Required. */
 #if !__has_feature(objc_arc)
-@property (nonatomic,assign) id<BrowserIDControllerDelegate> delegate;
+@property (nonatomic,assign) id<PersonaControllerDelegate> delegate;
 #else
-@property (nonatomic,weak) id<BrowserIDControllerDelegate> delegate;
+@property (nonatomic,weak) id<PersonaControllerDelegate> delegate;
 #endif
 
 

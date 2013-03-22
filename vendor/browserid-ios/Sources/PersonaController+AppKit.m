@@ -1,47 +1,47 @@
 //
-//  BrowserIDController+AppKit.m
+//  PersonaController+AppKit.m
 //  TouchWiki
 //
 //  Created by Jens Alfke on 1/9/13.
 //  Copyright (c) 2013 Couchbase. All rights reserved.
 //
 
-#import "BrowserIDController+AppKit.h"
+#import "PersonaController+AppKit.h"
 #import <WebKit/WebKit.h>
 
-@interface BrowserIDNSViewController : NSViewController
+@interface PersonaNSViewController : NSViewController
 {
-    BrowserIDController* _controller;
+    PersonaController* _controller;
     WebView* _webView;
     NSPanel* _panel;
 }
-- (id) initWithController: (BrowserIDController*)controller;
+- (id) initWithController: (PersonaController*)controller;
 @property (readonly) WebView* webView;
 @property (readonly) NSPanel* panel;
 @end
 
 
-@implementation BrowserIDController (AppKit)
+@implementation PersonaController (AppKit)
 
 - (NSViewController*) viewController {
     if (!_UIController) {
-        _UIController = [[BrowserIDNSViewController alloc] initWithController: self];
+        _UIController = [[PersonaNSViewController alloc] initWithController: self];
     }
     return _UIController;
 }
 
 - (NSPanel*) panel {
-    return [(BrowserIDNSViewController*)self.viewController panel];
+    return [(PersonaNSViewController*)self.viewController panel];
 }
 
 @end
 
 
-@implementation BrowserIDNSViewController
+@implementation PersonaNSViewController
 
 @synthesize webView=_webView;
 
-- (id) initWithController: (BrowserIDController*)controller {
+- (id) initWithController: (PersonaController*)controller {
     self = [super init];
     if (self) {
         _controller = controller;
@@ -91,7 +91,7 @@
 - (IBAction) cancel
 {
     [_webView.mainFrame stopLoading];
-    [_controller.delegate browserIDControllerDidCancel: _controller];
+    [_controller.delegate personaControllerDidCancel: _controller];
 }
 
 // WebPolicyDelegate method
