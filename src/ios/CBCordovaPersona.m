@@ -27,7 +27,7 @@
     personaController.origin = [NSURL URLWithString:[urlCommand.arguments objectAtIndex:0]];
     personaController.delegate = self;
 
-    id rootVC = [[[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0] nextResponder];
+    UIViewController* rootVC = [[[UIApplication sharedApplication] keyWindow] rootViewController];
     [personaController presentModalInController: rootVC];
 }
 
