@@ -2,27 +2,36 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.couchbase.persona"
-    version="0.1.1">
+    version="0.1.2">
 
-	<name>CordovaPersona</name>
-	<asset src="www/cordova-persona.js" target="cordova-persona.js"/>
+  <engines>
+    <engine name="cordova" version=">=3.0.0"/>
+  </engines>
 
-    <platform name="ios">
-    	<config-file target="config.xml" parent="/widget/plugins">
-    	    <plugin name="CBCordovaPersona" value="CBCordovaPersona"/>
-    	</config-file>
+  <name>CordovaPersona</name>
 
-	    <header-file src="src/ios/CBCordovaPersona.h" />
-	    <source-file src="src/ios/CBCordovaPersona.m" />
+  <platform name="ios">
+    <js-module src="www/cordova-persona.js" name="CordovaPersona">
+      <clobbers target="window.presentPersonaDialog" />
+    </js-module>
 
-	    <header-file src="vendor/browserid-ios/Sources/PersonaController.h" />
-	    <source-file src="vendor/browserid-ios/Sources/PersonaController.m" />
+    <config-file target="config.xml" parent="/widget/plugins">
+      <feature name="CBCordovaPersona">
+        <param name="ios-package" value="CBCordovaPersona"/>
+      </feature>
+    </config-file>
 
-	    <resource-file src="vendor/browserid-ios/Sources/PersonaController.js" />
+    <header-file src="src/ios/CBCordovaPersona.h" />
+    <source-file src="src/ios/CBCordovaPersona.m" />
 
-	    <header-file src="vendor/browserid-ios/Sources/PersonaController+UIKit.h" />
-	    <source-file src="vendor/browserid-ios/Sources/PersonaController+UIKit.m" />
+    <header-file src="vendor/browserid-ios/Sources/PersonaController.h" />
+    <source-file src="vendor/browserid-ios/Sources/PersonaController.m" />
 
-    </platform>
+    <resource-file src="vendor/browserid-ios/Sources/PersonaController.js" />
+
+    <header-file src="vendor/browserid-ios/Sources/PersonaController+UIKit.h" />
+    <source-file src="vendor/browserid-ios/Sources/PersonaController+UIKit.m" />
+
+  </platform>
 
 </plugin>
